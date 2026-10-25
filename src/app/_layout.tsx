@@ -9,6 +9,10 @@ export default function RootLayout() {
         options={{
           title: "Details",
           headerBackButtonDisplayMode: "minimal",
+          presentation: "formSheet",
+          sheetAllowedDetents: [0.9],
+          sheetGrabberVisible: true,
+          headerShown: true,
         }}
       />
     </Stack>

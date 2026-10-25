@@ -1,4 +1,4 @@
-import { useLocalSearchParams } from "expo-router";
+import { Stack, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 
@@ -57,49 +57,52 @@ export default function Details() {
     colorsByType[pokemonDetails?.types?.[0]?.type?.name] ?? "#E0E0E0";
 
   return (
-    <ScrollView
-      style={{ backgroundColor: bgColor }}
-      contentContainerStyle={{
-        gap: 16,
-        padding: 16,
-      }}
-    >
-      {pokemonDetails && (
-        <View style={styles.card}>
-          <Text style={styles.name}>{pokemonDetails.name}</Text>
+    <>
+      <Stack.Screen options={{ title: params.name as string }} />
+      <ScrollView
+        style={{ backgroundColor: bgColor }}
+        contentContainerStyle={{
+          gap: 16,
+          padding: 16,
+        }}
+      >
+        {pokemonDetails && (
+          <View style={styles.card}>
+            <Text style={styles.name}>{pokemonDetails.name}</Text>
 
-          <Image
-            source={{ uri: pokemonDetails.sprites.front_default }}
-            style={{ width: 150, height: 150, alignSelf: "center" }}
-          />
+            <Image
+              source={{ uri: pokemonDetails.sprites.front_default }}
+              style={{ width: 150, height: 150, alignSelf: "center" }}
+            />
 
-          <Text style={styles.info}>
-            Height: {pokemonDetails.height / 10} m
-          </Text>
-          <Text style={styles.info}>
-            Weight: {pokemonDetails.weight / 10} kg
-          </Text>
-          <Text style={styles.info}>
-            Types:{" "}
-            {pokemonDetails.types.map((t: any) => t.type.name).join(", ")}
-          </Text>
-
-          <Text style={styles.info}>
-            Abilities:{" "}
-            {pokemonDetails.abilities
-              .map((a: any) => a.ability.name)
-              .join(", ")}
-          </Text>
-
-          <Text style={[styles.heading, { color: bgColor }]}>Base Stats</Text>
-          {pokemonDetails.stats.map((s: any) => (
-            <Text key={s.stat.name} style={styles.info}>
-              {s.stat.name}: {s.base_stat}
+            <Text style={styles.info}>
+              Height: {pokemonDetails.height / 10} m
             </Text>
-          ))}
-        </View>
-      )}
-    </ScrollView>
+            <Text style={styles.info}>
+              Weight: {pokemonDetails.weight / 10} kg
+            </Text>
+            <Text style={styles.info}>
+              Types:{" "}
+              {pokemonDetails.types.map((t: any) => t.type.name).join(", ")}
+            </Text>
+
+            <Text style={styles.info}>
+              Abilities:{" "}
+              {pokemonDetails.abilities
+                .map((a: any) => a.ability.name)
+                .join(", ")}
+            </Text>
+
+            <Text style={[styles.heading, { color: bgColor }]}>Base Stats</Text>
+            {pokemonDetails.stats.map((s: any) => (
+              <Text key={s.stat.name} style={styles.info}>
+                {s.stat.name}: {s.base_stat}
+              </Text>
+            ))}
+          </View>
+        )}
+      </ScrollView>
+    </>
   );
 }
 

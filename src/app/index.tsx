@@ -47,7 +47,7 @@ const colorsByType = {
 export default function Index() {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
-  console.log(pokemons[0]);
+  // console.log(pokemons[0]);
 
   useEffect(() => {
     // fetch pokemons
